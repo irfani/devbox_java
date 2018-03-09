@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=pg_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - PGDATA=/tmp
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     tty: true
