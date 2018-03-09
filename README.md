@@ -3,8 +3,8 @@
 Dockerize your java application.
 
 Project ini menggunakan docker-compose yang terdiri dari 2 container :
-1. devserver (OpenJDK + dcevm + maven + gradle + nodejs + git)
-2. database (postgresql)
+- devserver (OpenJDK + dcevm + maven + gradle + nodejs + git)
+- database (postgresql)
 
 
 # Requirements
@@ -27,17 +27,23 @@ Project ini menggunakan docker-compose yang terdiri dari 2 container :
       devbox_java
       |-- src
       |-- postgres-data
-      |-- gradel-repo
+      |-- gradle-repo
       |-- m2-repo
+	  ..
+	  src : sourcecode project copy disini
+	  postgres-data : menyimpan database (agar data tersimpan persistent)
+	  gradle-repo : menyimpan library dari gradle
+	  m2-repo : menyimpan libary dari maven
+	  
       
-- Masuk ke docker container, start directory difolder 'src' silahkan copy file project anda.
+- Masuk ke docker container, start directory difolder 'src' 
 
       docker exec -it devbox /bin/bash
 	  developer@27d13e014ec0:~/src$
 
 - Setting database connection
 
-      lakukan setup di source code anda misal sepert ini. username & pass = postgres
+      lakukan setup di source code anda misal sepert ini. username & pass = postgres (dapat diubah di docker-compose.yml)
 	  db.url=jdbc:postgresql://postgres:5432/pg_db 
 	  	 
 - Shutdown devbox
