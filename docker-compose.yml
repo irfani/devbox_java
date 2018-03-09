@@ -1,0 +1,33 @@
+version: '2'
+services:
+  # Postgres database
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=pg_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    tty: true
+    stdin_open: true
+  server:
+    build: .
+    container_name: devbox
+    ports:
+      - 8080:8080
+      - 8000:8000
+      #Remote Debugger
+      - 5005:5005
+    depends_on:
+      - postgres
+    volumes:
+      - ./src:/home/developer/src
+      - ./m2-repo:/home/developer/.m2
+      - ./gradle-repo:/home/developer/.gradle
+    command: /bin/bash
+    tty: true
+    stdin_open: true
