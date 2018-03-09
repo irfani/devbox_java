@@ -1,4 +1,3 @@
-#FROM ubuntu:xenial
 FROM phusion/baseimage
 
 # Use baseimage-docker's init system.
@@ -13,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         software-properties-common \
         postgresql-client \
         openjdk-8-jdk \
+		openjdk-8-jre-dcevm \
         maven \
         gradle \
         nano \
@@ -31,8 +31,8 @@ WORKDIR /tmp
 
 #DCEVM installation
 #Since DCEVM for Xenial seems kind of broken, we download it from zetzy
-RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/o/openjdk-8-jre-dcevm/openjdk-8-jre-dcevm_8u112-2_amd64.deb && \
-    dpkg -i openjdk-8-jre-dcevm_8u112-2_amd64.deb
+#RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/o/openjdk-8-jre-dcevm/openjdk-8-jre-dcevm_8u112-2_amd64.deb && \
+#    dpkg -i openjdk-8-jre-dcevm_8u112-2_amd64.deb
 
 #Create source folders
 RUN mkdir -p /home/developer/src
